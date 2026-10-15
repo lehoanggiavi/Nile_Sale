@@ -1,0 +1,18 @@
+/// 28 noi nhan, kem City_Tier nhat quan. Khoa tu nhien To_Location.
+table DimDestination
+	lineageTag: 1fa67367-6486-415c-ba10-4549fa5a2524
+
+	column To_Location
+		dataType: string
+		lineageTag: 35e55977-ea33-49f1-9dec-18ab8f7dc693
+		sourceColumn: To_Location
+
+	column City_Tier
+		dataType: string
+		lineageTag: 47e3f825-5563-487c-86f7-5f206f463c93
+		sourceColumn: City_Tier
+
+	partition DimDestination = m
+		mode: import
+		source = let Source = FactSalesLine, Proj = Table.SelectColumns(Source, {"To_Location", "City_Tier"}), Dist = Table.Distinct(Proj) in Dist
+

@@ -1,0 +1,127 @@
+/// Mot dong = mot dong CSV sach (grain dong). Ngay ISO, so nguyen chinh xac, khong suy dien nghiep vu.
+table FactSalesLine
+	lineageTag: d229e0b3-1ce5-4018-95b3-397a0e502907
+
+	column Sales_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 31eb49be-47ed-4a76-bbea-dcf08f2fa6d0
+		summarizeBy: none
+		sourceColumn: Sales_Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delivery_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ea232e7f-23a3-4fbe-912d-fbaf0626301c
+		summarizeBy: none
+		sourceColumn: Delivery_Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column SKU_Code
+		dataType: string
+		lineageTag: f0436a3d-5a62-41d8-a08d-f88aa2dddfa1
+		sourceColumn: SKU_Code
+
+	column Qty
+		dataType: int64
+		lineageTag: 4e4cf285-57a3-4511-b422-b544e030417c
+		sourceColumn: Qty
+
+	column Unit_Price
+		dataType: int64
+		lineageTag: 37973084-30b9-4d4c-a813-d0d131aba2a7
+		sourceColumn: Unit_Price
+
+	column Line_Amount
+		dataType: int64
+		lineageTag: d8e5f06f-587f-43a0-8668-14826e8f6e98
+		sourceColumn: Line_Amount
+
+	column From_Location
+		dataType: string
+		lineageTag: 5c61d735-b5a3-4d08-8db7-cc769e02be4d
+		sourceColumn: From_Location
+
+	column To_Location
+		dataType: string
+		lineageTag: 0b72f20a-88eb-4613-9980-b1bb9c4c7f62
+		sourceColumn: To_Location
+
+	column Channel
+		dataType: string
+		lineageTag: 8d25c036-7ba5-44ec-9c9a-24acb4c2eafe
+		sourceColumn: Channel
+
+	column Sub_Channel
+		dataType: string
+		lineageTag: c49e9bc2-84c1-4b6e-a499-cf86b32e2015
+		sourceColumn: Sub_Channel
+
+	column Delivery_Type
+		dataType: string
+		lineageTag: 229bf8e9-aaef-46bb-962b-fcdf2c72c55b
+		sourceColumn: Delivery_Type
+
+	column Courier
+		dataType: string
+		lineageTag: b14d1681-4c74-4d57-b2e7-010d07ee2ede
+		sourceColumn: Courier
+
+	column City_Tier
+		dataType: string
+		lineageTag: b0d1453f-2d21-46a3-85d1-c7413eda3117
+		sourceColumn: City_Tier
+
+	column Category
+		dataType: string
+		lineageTag: 12c2b786-6751-48d4-9011-15d4a52d5683
+		sourceColumn: Category
+
+	column Order_ID
+		dataType: string
+		lineageTag: 7005aa9d-5b09-42db-880b-ea1836a0a4fb
+		sourceColumn: Order_ID
+
+	column Customer_ID
+		dataType: string
+		lineageTag: a00444fe-b39f-42c3-81ee-4f70f7290cad
+		sourceColumn: Customer_ID
+
+	column Payment_Method
+		dataType: string
+		lineageTag: 81f69226-80ef-4a30-a017-48b12fbb8856
+		sourceColumn: Payment_Method
+
+	column Is_Returned
+		dataType: int64
+		lineageTag: 5692c379-db21-4e57-a597-cd8d5e878a7d
+		sourceColumn: Is_Returned
+
+	column __source_file__
+		dataType: string
+		lineageTag: a5efe477-ac9a-47e8-b431-c4cd8db444aa
+		sourceColumn: __source_file__
+
+	column __sheet__
+		dataType: string
+		lineageTag: 8ea9e155-75e4-4be9-980b-d703e8c88312
+		sourceColumn: __sheet__
+
+	column __excel_row__
+		dataType: int64
+		lineageTag: 6429a7a4-2b87-42fe-9125-d0b4b0a02508
+		sourceColumn: __excel_row__
+
+	partition FactSalesLine = m
+		mode: import
+		source = let Source = Csv.Document(File.Contents("E:\Practice_DSEA\DA\OpenSrcDA\Nile_Sale\data\processed\nile_sales_clean.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]), Typed = Table.TransformColumnTypes(Headers, {{"Sales_Date", type date}, {"Delivery_Date", type date}, {"SKU_Code", type text}, {"Qty", Int64.Type}, {"Unit_Price", Int64.Type}, {"Line_Amount", Int64.Type}, {"From_Location", type text}, {"To_Location", type text}, {"Channel", type text}, {"Sub_Channel", type text}, {"Delivery_Type", type text}, {"Courier", type text}, {"City_Tier", type text}, {"Category", type text}, {"Order_ID", type text}, {"Customer_ID", type text}, {"Payment_Method", type text}, {"Is_Returned", Int64.Type}, {"__source_file__", type text}, {"__sheet__", type text}, {"__excel_row__", Int64.Type}}) in Typed
+
+	annotation PBI_ResultType = Table
+

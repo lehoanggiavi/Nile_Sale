@@ -1,0 +1,18 @@
+/// 50 SKU, moi SKU mot Category (nhieu-mot). Khoa tu nhien SKU_Code.
+table DimProduct
+	lineageTag: 8b0402f1-5580-4bfa-afb2-b0951efc98a9
+
+	column SKU_Code
+		dataType: string
+		lineageTag: 9073b50b-7f91-48cc-a560-7025d6df0444
+		sourceColumn: SKU_Code
+
+	column Category
+		dataType: string
+		lineageTag: 5b796c89-53fc-4133-9fcd-916aaeb6673b
+		sourceColumn: Category
+
+	partition DimProduct = m
+		mode: import
+		source = let Source = FactSalesLine, Proj = Table.SelectColumns(Source, {"SKU_Code", "Category"}), Dist = Table.Distinct(Proj) in Dist
+

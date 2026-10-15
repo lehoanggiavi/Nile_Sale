@@ -1,0 +1,22 @@
+model NileSales
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+
+annotation PBI_QueryOrder = ["FactSalesLine","DimProduct","DimDestination","DimDate"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+ref table FactSalesLine
+ref table DimProduct
+ref table DimDestination
+ref table DimDate
+ref table Measure
+
+ref cultureInfo en-US
+

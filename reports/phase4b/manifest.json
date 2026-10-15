@@ -1,0 +1,30 @@
+{
+  "history_note": "Các file ngoài new_artifacts còn trong thư mục thuộc lượt trước, chưa nghiệm thu cho run này. sku_jun_jul.csv đã được ghi đè và thuộc artifact mới; bản cũ chỉ còn trong backup.",
+  "new_artifacts": [
+    "monthly.csv",
+    "month_category.csv",
+    "t7_decomp.csv",
+    "contrib_category.csv",
+    "contrib_category.png",
+    "sku_all.csv",
+    "sku_top15.csv",
+    "sku_jun_jul.csv",
+    "destination.csv",
+    "combo_cat_tier.csv",
+    "returns_month.csv",
+    "returns_category.csv",
+    "returns_category.png",
+    "returns_location.csv",
+    "trend_month.png",
+    "leadtime_dist.csv",
+    "leadtime_hist.png",
+    "leadtime_location.csv",
+    "leadtime_from.csv",
+    "leadtime_from_to.csv",
+    "leadtime_category.csv",
+    "leadtime_tier.csv"
+  ],
+  "run_id": "NILE_SALES_RESTART_20261013",
+  "source_csv_sha256": "e009438801cee5c8f4c848b523380a14cec3464beffb79ea6703395ee2f96829",
+  "task_id": "NILE_SALES_PHASE4B_REPAIR1_20261014"
+}

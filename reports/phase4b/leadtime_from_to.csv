@@ -1,0 +1,85 @@
+From_Location,To_Location,n,median
+Gurgaon,Agra,138,2.0
+Gurgaon,Ahmedabad,111,5.0
+Gurgaon,Bengaluru,106,5.0
+Gurgaon,Bhopal,62,5.0
+Gurgaon,Bhubaneswar,50,5.0
+Gurgaon,Chandigarh,138,2.0
+Gurgaon,Chennai,99,5.0
+Gurgaon,Coimbatore,40,5.0
+Gurgaon,Dehradun,125,2.0
+Gurgaon,Delhi,476,2.0
+Gurgaon,Guwahati,73,5.0
+Gurgaon,Hyderabad,111,5.0
+Gurgaon,Indore,73,5.0
+Gurgaon,Jaipur,120,2.0
+Gurgaon,Kanpur,158,3.0
+Gurgaon,Kochi,28,5.0
+Gurgaon,Kolkata,273,5.0
+Gurgaon,Lucknow,133,2.0
+Gurgaon,Ludhiana,140,3.0
+Gurgaon,Mumbai,115,5.0
+Gurgaon,Mysuru,40,5.0
+Gurgaon,Nagpur,34,5.0
+Gurgaon,Nashik,28,5.0
+Gurgaon,Patna,63,5.0
+Gurgaon,Pune,97,5.0
+Gurgaon,Surat,46,5.0
+Gurgaon,Vadodara,24,5.0
+Gurgaon,Visakhapatnam,38,5.0
+Hyderabad,Agra,18,4.5
+Hyderabad,Ahmedabad,140,5.0
+Hyderabad,Bengaluru,542,2.0
+Hyderabad,Bhopal,84,5.0
+Hyderabad,Bhubaneswar,54,5.0
+Hyderabad,Chandigarh,20,5.0
+Hyderabad,Chennai,458,3.0
+Hyderabad,Coimbatore,152,2.0
+Hyderabad,Dehradun,19,6.0
+Hyderabad,Delhi,109,5.0
+Hyderabad,Guwahati,76,5.0
+Hyderabad,Hyderabad,511,2.0
+Hyderabad,Indore,60,4.5
+Hyderabad,Jaipur,35,4.0
+Hyderabad,Kanpur,38,6.0
+Hyderabad,Kochi,148,3.0
+Hyderabad,Kolkata,217,5.0
+Hyderabad,Lucknow,36,5.0
+Hyderabad,Ludhiana,31,5.0
+Hyderabad,Mumbai,139,5.0
+Hyderabad,Mysuru,154,3.0
+Hyderabad,Nagpur,32,5.0
+Hyderabad,Nashik,51,5.0
+Hyderabad,Patna,59,5.0
+Hyderabad,Pune,139,5.0
+Hyderabad,Surat,56,5.0
+Hyderabad,Vadodara,29,5.0
+Hyderabad,Visakhapatnam,138,2.0
+Navi Mumbai,Agra,37,5.0
+Navi Mumbai,Ahmedabad,469,2.0
+Navi Mumbai,Bengaluru,101,5.0
+Navi Mumbai,Bhopal,78,5.0
+Navi Mumbai,Bhubaneswar,57,5.0
+Navi Mumbai,Chandigarh,38,5.0
+Navi Mumbai,Chennai,116,5.0
+Navi Mumbai,Coimbatore,37,5.0
+Navi Mumbai,Dehradun,34,5.0
+Navi Mumbai,Delhi,125,5.0
+Navi Mumbai,Guwahati,72,5.0
+Navi Mumbai,Hyderabad,93,5.0
+Navi Mumbai,Indore,83,5.0
+Navi Mumbai,Jaipur,28,5.0
+Navi Mumbai,Kanpur,23,6.0
+Navi Mumbai,Kochi,23,5.0
+Navi Mumbai,Kolkata,237,5.0
+Navi Mumbai,Lucknow,24,5.0
+Navi Mumbai,Ludhiana,29,5.0
+Navi Mumbai,Mumbai,440,3.0
+Navi Mumbai,Mysuru,23,5.0
+Navi Mumbai,Nagpur,98,2.0
+Navi Mumbai,Nashik,137,2.0
+Navi Mumbai,Patna,72,5.0
+Navi Mumbai,Pune,449,3.0
+Navi Mumbai,Surat,127,2.0
+Navi Mumbai,Vadodara,142,2.0
+Navi Mumbai,Visakhapatnam,29,5.0

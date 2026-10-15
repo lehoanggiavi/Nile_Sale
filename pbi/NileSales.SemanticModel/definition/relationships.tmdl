@@ -1,0 +1,17 @@
+relationship FactSalesLine_SKU_DimProduct
+	fromColumn: FactSalesLine.SKU_Code
+	toColumn: DimProduct.SKU_Code
+
+relationship FactSalesLine_Dest_DimDestination
+	fromColumn: FactSalesLine.To_Location
+	toColumn: DimDestination.To_Location
+
+relationship FactSalesLine_SalesDate_DimDate
+	fromColumn: FactSalesLine.Sales_Date
+	toColumn: DimDate.Date
+
+relationship FactSalesLine_DeliveryDate_DimDate
+	isActive: false
+	fromColumn: FactSalesLine.Delivery_Date
+	toColumn: DimDate.Date
+

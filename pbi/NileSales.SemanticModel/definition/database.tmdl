@@ -1,0 +1,4 @@
+/// Nile Sales semantic model — phase 3 (fact grain dong, 3 dimension, CSV sach phase 2)
+database
+	compatibilityLevel: 1702
+

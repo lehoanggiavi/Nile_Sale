@@ -1,0 +1,236 @@
+% UTF-8. Compile from reports/ with XeLaTeX; keep auxiliary output in OS temp.
+% Deliver this TEX with phase5b/ and phase6/ images. PDF compilation authorized by the user.
+% Layout reference: GiaoNgon/docs/bao_cao_ban_giao.pdf, selected by the user.
+\documentclass[11pt,a4paper]{article}
+\usepackage[top=18mm,bottom=18mm,left=18mm,right=18mm,headheight=15pt]{geometry}
+\usepackage{fontspec}
+\setmainfont{Arial}
+\setsansfont{Arial}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,booktabs,tabularx,array,titlesec,fancyhdr,enumitem,needspace}
+\usepackage{hyperref}
+\definecolor{purple}{HTML}{865EFF}
+\definecolor{deep}{HTML}{6B007B}
+\definecolor{mist}{HTML}{ECE6FF}
+\definecolor{ink}{HTML}{202124}
+\definecolor{muted}{HTML}{606472}
+\hypersetup{colorlinks=true,linkcolor=deep,urlcolor=deep,filecolor=deep,
+  pdftitle={Nile Sales — phần tăng tháng 7 đến từ đâu?},pdfauthor={Nile Sales}}
+\urlstyle{same}
+\titleformat{\section}{\Large\bfseries\color{deep}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{ink}}{}{0em}{}
+\titlespacing*{\section}{0pt}{9pt}{4pt}
+\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlist{leftmargin=1.5em,itemsep=0pt,topsep=3pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\emergencystretch}{2em}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{muted}NILE SALES / BÁO CÁO KINH DOANH}
+\fancyhead[R]{\small\color{muted}15/10/2026}
+\fancyfoot[L]{\footnotesize\color{muted}Dữ liệu: 01/01–31/07/2025}
+\fancyfoot[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\newcommand{\evidence}[1]{\par\nopagebreak[3]\begin{samepage}
+  \footnotesize\color{muted}Nguồn: #1.\par\end{samepage}}
+\newcommand{\callout}[2]{\par\smallskip\begingroup\setlength{\fboxsep}{8pt}
+  \colorbox{mist}{\parbox{\dimexpr\linewidth-16pt\relax}{\textbf{#1} #2}}\endgroup\par\smallskip}
+\newcommand{\exhibit}[3]{\begin{figure}[!htbp]\centering
+  \includegraphics[width=\linewidth]{#1}\par\vspace{2pt}
+  {\small\raggedright\textbf{#2} #3\par}\end{figure}}
+\renewcommand{\topfraction}{.95}
+\renewcommand{\bottomfraction}{.95}
+\renewcommand{\textfraction}{.05}
+\renewcommand{\floatpagefraction}{.85}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{5}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{8pt}
+\let\originalsection\section
+\renewcommand{\section}{\Needspace{5\baselineskip}\originalsection}
+\begin{document}
+\color{ink}
+
+\begin{titlepage}
+\thispagestyle{empty}
+\begingroup\setlength{\fboxsep}{0pt}
+\colorbox{mist}{\begin{minipage}[c][246mm][c]{\linewidth}
+\centering
+{\small\bfseries\color{deep}BÁO CÁO PHÂN TÍCH KINH DOANH\par}
+\vspace{12mm}
+{\fontsize{32}{37}\selectfont\bfseries NILE SALES\par}
+\vspace{5mm}
+{\fontsize{23}{29}\selectfont\bfseries Phần tăng tháng 7\\đến từ đâu?\par}
+\vspace{14mm}
+{\color{purple}\rule{105mm}{2pt}}\par
+\vspace{12mm}
+{\large Phân tích biến động giá trị, cơ cấu sản phẩm\\và các dấu hiệu cần xác minh\par}
+\vspace{13mm}
+{\large Kỳ dữ liệu: 01/01–31/07/2025\par}
+\vspace{12mm}
+{\large CSV \textbullet\ Python \textbullet\ Power BI\par}
+\vspace{18mm}
+{\normalsize Báo cáo phục vụ thảo luận và quyết định quản lý\par}
+\vspace{4mm}
+{\normalsize 15 tháng 10 năm 2026\par}
+\vspace{4mm}
+{\small Bản chuẩn bị duyệt nội dung; chưa nghiệm thu bàn giao\par}
+\end{minipage}}
+\endgroup
+\end{titlepage}
+\setcounter{page}{2}
+
+\section*{Thông điệp cho người quản lý}
+\textbf{Giá trị tháng 7 tăng nhanh hơn lượng; cần tìm phần tăng ở từng mã sản phẩm.}
+Giá trị nguồn tăng \textbf{22,72\%}, lượng tăng \textbf{5,87\%} so tháng 6. Chỉ nhìn lượng tăng chưa giải thích được vì sao giá trị tăng nhanh hơn. Cần xem giá ghi nhận và cơ cấu sản phẩm/nơi nhận; báo cáo chưa xác định nguyên nhân.
+
+\begin{tabularx}{\linewidth}{@{}YYY@{}}
+\toprule
+{\Large\bfseries +22,72\%} & {\Large\bfseries +5,87\%} & {\Large\bfseries\textcolor{deep}{29,26\%}} \\
+Giá trị nguồn & Lượng ghi nhận & Đóng góp hai mã Makeup \\
+1.421.195 → 1.744.028 & 2.182 → 2.310 & 94.461 / 322.833 \\
+\bottomrule
+\end{tabularx}
+{\footnotesize\color{muted}So tháng 7 với tháng 6/2025. Giá trị chưa xác nhận tiền tệ hoặc doanh thu thuần. Tỷ lệ 29,26\% có mẫu số là phần tăng ròng, không phải tổng tháng 7.\par}
+
+\callout{Quyết định đề nghị:}{Ưu tiên đối chiếu BPC-1041 và BPC-1048 trong tháng 6–7. Hai mã đóng góp 94.461, tương đương 29,26\% phần tăng giá trị; phạm vi này đủ nhỏ để rà từng dòng trước khi đề xuất thay đổi kinh doanh.}
+
+Skincare, Makeup và Haircare đóng góp \textbf{81,90\% giá trị toàn kỳ}. Cờ nguồn và hiệu ngày có khác biệt giữa các nhóm, nhưng chưa đủ định nghĩa để kết luận hoàn hàng thực tế hay giao chậm. Chưa dùng những số này để điều chỉnh chính sách hoàn hoặc đánh giá nhà vận chuyển.
+
+\textbf{Phạm vi và câu hỏi.} Bộ thực hành có 9.705 dòng, 50 mã sản phẩm, 5 nhóm và 28 nơi nhận. Báo cáo hỏi giá trị/lượng thay đổi ra sao, nhóm nào đóng góp, cờ nguồn nằm ở đâu và hiệu ngày khác nhau thế nào. H1 vẫn là giả định thực hành; mã nguồn chưa được xác nhận là đơn thật.
+
+\section{Giá trị tăng đều, tháng 7 đáng tìm hiểu nhất}
+Giá trị nguồn tăng từ \textbf{968.478 ở tháng 1 lên 1.744.028 ở tháng 7}. Trong bảy tháng quan sát, tháng 7 có mức tăng so tháng trước cao nhất.
+
+\exhibit{phase5b/page_01.png}{Dashboard 1. Tổng quan — đọc giá trị cùng lượng và cơ cấu.}{Ảnh Power BI thật; tất cả tháng/nhóm/nơi nhận. Cột giá trị đọc ở trục trái, đường phần trăm ở trục phải. Tháng 1 chưa có kỳ trước.}
+
+\begin{tabularx}{\linewidth}{@{}Yrrr@{}}
+\toprule
+Chỉ tiêu & Tháng 6 & Tháng 7 & Thay đổi \\
+\midrule
+Giá trị nguồn & 1.421.195 & 1.744.028 & +322.833; +22,72\% \\
+Lượng ghi nhận & 2.182 & 2.310 & +128; +5,87\% \\
+Số dòng nguồn & 1.597 & 1.722 & +125 \\
+\bottomrule
+\end{tabularx}
+
+Câu hỏi cần thu hẹp là: \textbf{phần tăng giá trị nằm ở sản phẩm nào, có đi cùng thay đổi lượng hoặc giá ghi nhận không?} Tổng tháng chưa trả lời được câu hỏi đó.
+
+Tháng 7 có 31 ngày, tháng 6 có 30 ngày. Khi chia giá trị cho số ngày lịch, mức tăng vẫn là \textbf{18,76\%}. Chênh lệch độ dài tháng không giải thích hết biến động. Đây chỉ là phép chuẩn hóa theo lịch; chưa xác nhận file đủ mọi giao dịch và không suy thành tăng trưởng toàn doanh nghiệp.
+\evidence{\href{run:phase4b/monthly.csv}{Bảng tháng}; đối chiếu CSV sạch theo ngày bán. Giá trị là tổng Line\_Amount, chưa xác nhận tiền tệ hoặc doanh thu thuần}
+
+\subsection*{Makeup đóng góp gần một nửa phần tăng tháng 7}
+\exhibit{phase6/july_change.png}{Hình 1. Makeup đóng góp gần một nửa phần tăng tháng 7.}{Hai cột đầu/cuối là tổng tháng 6/7. Năm cột giữa cộng/trừ đúng 322.833; tím là phần tăng, cam là phần giảm.}
+
+\begin{tabularx}{\linewidth}{@{}Yr@{}}
+\toprule
+Nhóm & Phần tăng/giảm giá trị so tháng 6 \\
+\midrule
+Makeup & \textbf{+159.095} \\
+Skincare & +87.280 \\
+Haircare & +85.493 \\
+Bodycare & −8.608 \\
+Fragrance & −427 \\
+\midrule
+\textbf{Tổng} & \textbf{+322.833} \\
+\bottomrule
+\end{tabularx}
+
+Makeup đóng góp \textbf{49,28\% phần tăng ròng}. Trong nhóm này, hai mã dưới đây cộng lại tăng \textbf{94.461}:
+
+\begin{tabularx}{\linewidth}{@{}Yrrr@{}}
+\toprule
+Mã & Lượng T6 → T7 & Giá trị T6 → T7 & Phần tăng \\
+\midrule
+BPC-1041 & 49 → 77 & 60.405 → 104.266 & +43.861 \\
+BPC-1048 & 44 → 83 & 46.994 → 97.594 & +50.600 \\
+\bottomrule
+\end{tabularx}
+
+Hai mã đều có dữ liệu bán trong cả bảy tháng; việc mới xuất hiện trong tháng 7 không giải thích phần tăng này. Lượng của cả hai cũng tăng, nhưng chưa tách riêng tác động lượng, giá từng dòng và cơ cấu nơi nhận. Đó là việc nên rà tiếp, chưa phải nguyên nhân đã được chứng minh.
+\evidence{\href{run:phase4b/t7_decomp.csv}{Phân rã theo nhóm}, \href{run:phase4b/sku_jun_jul.csv}{so sánh đủ 50 mã T6–T7}, \href{run:../data/processed/nile_sales_clean.csv}{CSV sạch có dấu vết nguồn}. Tỷ lệ 29,26\% dùng mẫu số phần tăng ròng 322.833}
+
+\section{Nhóm đóng góp lớn giúp chọn nơi tìm hiểu tiếp}
+\begin{tabularx}{\linewidth}{@{}Yrrr@{}}
+\toprule
+Nhóm sản phẩm & Giá trị toàn kỳ & Tỷ trọng & Số mã \\
+\midrule
+Skincare & 2.727.493 & 31,04\% & 17 \\
+Makeup & 2.339.309 & 26,62\% & 10 \\
+Haircare & 2.129.527 & 24,23\% & 10 \\
+Bodycare & 1.202.561 & 13,69\% & 11 \\
+Fragrance & 388.201 & 4,42\% & 2 \\
+\midrule
+\textbf{Tổng} & \textbf{8.787.091} & \textbf{100\% trước làm tròn} & \textbf{50} \\
+\bottomrule
+\end{tabularx}
+
+Skincare lớn nhất về giá trị toàn kỳ; Makeup đóng góp nhiều nhất vào phần tăng tháng 7. Hai góc nhìn trả lời hai câu hỏi: \textbf{nhóm nào đang lớn} và \textbf{nhóm nào tạo ra biến động gần nhất}. Với mục tiêu giải thích tháng 7, nên bắt đầu từ Makeup.
+
+Theo nơi nhận, Bengaluru đạt \textbf{678.661}, Kolkata đạt \textbf{676.437}, là hai nơi có giá trị lớn nhất. Đây là điểm có thể phân tách tiếp khi rà hai mã; số liệu chưa chứng minh là thị trường sinh lời nhất.
+
+Chưa có chi phí, tồn kho, nhu cầu chưa được đáp ứng hoặc khuyến mãi. Tỷ trọng lớn chưa đủ để quyết định mua thêm hàng, giảm giá hay phân bổ ngân sách. Số mã từng nhóm khác nhau nên không dùng tổng nhóm để kết luận sản phẩm được ưa chuộng hơn.
+\evidence{\href{run:phase4b/contrib_category.csv}{Đóng góp nhóm}, \href{run:phase4b/destination.csv}{28 nơi nhận}. Tỷ trọng cùng mẫu số 8.787.091; số làm tròn có thể không cộng đúng 100\%}
+
+\section{Cờ nguồn giảm về tỷ lệ, chưa chứng minh chất lượng cải thiện}
+Toàn kỳ có \textbf{574 dòng cờ 1 trên 9.705 dòng có cờ hợp lệ, bằng 5,91\%}. Tháng 3 là \textbf{87/1.276 = 6,82\%}; tháng 7 là \textbf{81/1.722 = 4,70\%}. Tỷ lệ tháng 7 thấp hơn dù quy mô dữ liệu lớn hơn.
+
+\exhibit{phase5b/page_03.png}{Dashboard 2. Cờ nguồn — tỷ lệ phải đọc cùng mẫu số.}{Ảnh Power BI thật, mặc định. Trên hình chấm: ngang là số dòng cờ hợp lệ, dọc là tỷ lệ cờ 1, kích thước là số dòng cờ 1; màu phân biệt nhóm.}
+
+Skincare có \textbf{206/3.337 = 6,17\%}, Fragrance có \textbf{14/262 = 5,34\%}. Năm nhóm chỉ nằm trong khoảng tỷ lệ 5,34–6,17\%; nhóm có nhiều cờ 1 nhất cũng có nhiều dòng nhất. Chưa có kiểm chứng để quy kết nhóm nào có vấn đề riêng.
+
+Nashik có tỷ lệ quan sát \textbf{18/216 = 8,33\%}, nhưng mẫu nhỏ hơn nhiều so toàn bộ dữ liệu. Chưa lấy riêng vị trí xếp hạng tỷ lệ để chọn hành động.
+
+\textbf{Việc được hỗ trợ:} theo dõi đồng thời số cờ, mẫu số và tỷ lệ; xác nhận ý nghĩa cờ trước khi đánh giá chất lượng. Chưa suy số đơn hoàn, tiền hoàn, nguyên nhân hoàn hay hiệu quả vận hành. Mức giảm có thể đi cùng thay đổi cơ cấu dòng; báo cáo chưa tách các ảnh hưởng này.
+\evidence{Cờ \href{run:phase4b/returns_month.csv}{theo tháng}, \href{run:phase4b/returns_category.csv}{theo nhóm}, \href{run:phase4b/returns_location.csv}{theo nơi nhận}. Mẫu số là dòng cờ 0/1, không phải đơn hoặc khách}
+
+\section{Hiệu ngày chủ yếu ở 2–3 ngày; Kolkata là hướng xác minh}
+\exhibit{phase6/source_day_gap.png}{Hình 2. Hơn nửa số dòng có hiệu ngày 2–3 ngày.}{Phân phối trên 9.705 dòng bán tháng 1–7/2025; ngày giao sang tháng 8 vẫn thuộc tháng bán. Hiệu ngày chưa chứng minh giao đúng hạn.}
+
+\textbf{5.393/9.705 dòng, bằng 55,57\%, có hiệu ngày 2–3 ngày}; trung vị toàn kỳ là \textbf{3 ngày}. Hiệu ngày chỉ nhận các mức 2–6 ngày.
+
+Kolkata có trung vị \textbf{5 ngày} trên cả ba tuyến gửi vào:
+
+\begin{tabularx}{\linewidth}{@{}Yrr@{}}
+\toprule
+Nơi gửi → Kolkata & Số dòng đủ ngày & Trung vị \\
+\midrule
+Gurgaon & 273 & 5 ngày \\
+Navi Mumbai & 237 & 5 ngày \\
+Hyderabad & 217 & 5 ngày \\
+\bottomrule
+\end{tabularx}
+
+Kết quả lặp lại trên ba tuyến là đầu mối tìm hiểu thêm. Chưa biết ngày giao là thực tế hay dự kiến, chưa có hạn giao cam kết và chưa loại trừ khác biệt cơ cấu sản phẩm/dòng. \textbf{Không gọi là giao trễ hoặc kết luận nguyên nhân nằm ở Kolkata.}
+
+Nếu sau này có ngày giao thực tế và hạn giao chuẩn, có thể kiểm lại các tuyến. Hiện tại chỉ mô tả khoảng cách hai ngày; ưu tiên chính vẫn là giải thích phần tăng tháng 7.
+\evidence{\href{run:phase4b/leadtime_dist.csv}{Phân phối hiệu ngày}, \href{run:phase4b/leadtime_from_to.csv}{mẫu và trung vị từng tuyến}. Trung vị tính trực tiếp từng tập dòng, không cộng/trung bình trung vị nhóm}
+
+\section{Một việc nên làm tiếp: đối chiếu hai mã Makeup}
+\textbf{Đề xuất một phiên rà soát tháng 6–7 cho BPC-1041 và BPC-1048} trước khi đề xuất thay đổi kinh doanh. Vai trò đề xuất là người phân tích, trao đổi với người phụ trách bán hàng khi có thông tin bổ sung. Chưa chốt người làm/thời hạn; việc này chưa triển khai trong báo cáo.
+
+\begin{enumerate}[before=\interlinepenalty10000]
+\item Lập bảng tháng × mã × nơi nhận, gồm số dòng, lượng và giá trị. Tổng chênh phải khớp \textbf{94.461}.
+\item Mở các dòng đóng góp chính, so lượng và giá từng dòng; giữ dấu vết tệp/sheet/dòng Excel. Không nhận là lỗi chỉ vì khác tháng trước.
+\item Ghi phần giải thích được và phần cần xác nhận. Chưa gọi thay đổi giá là tăng giá bán thực tế khi chưa rõ chiết khấu, thuế và cách ghi nhận.
+\end{enumerate}
+
+\textbf{Tiêu chí hoàn thành:} bảng cùng phạm vi cộng đúng tổng; dòng đóng góp chính truy được nguồn; giải thích rõ điều đã quan sát và câu hỏi chưa có đáp án. Đây là tiêu chí xác minh, chưa là mục tiêu tăng bán hàng hay cam kết hiệu quả.
+
+\callout{Ba điều cần chốt:}{Ai phụ trách rà; phạm vi và quyền truy cập dữ liệu; tiêu chí xác minh trước khi đề xuất thay đổi. Chưa có thử nghiệm thực tế nên không ghi nhận hiệu quả đã đạt.}
+
+Nếu phần tăng chủ yếu đi cùng lượng, mới có cơ sở hỏi tiếp khả năng đáp ứng hàng. Nếu đi cùng giá/cơ cấu nơi nhận, cần làm rõ định nghĩa hoặc bối cảnh bán. Không tự khuyến nghị nhập hàng, khuyến mãi hay nhận lợi ích đã đạt khi chưa có bằng chứng.
+
+\section{Nguồn, phương pháp và giới hạn}
+\begin{itemize}
+\item \textbf{Nguồn:} theo người cung cấp, Excel lấy từ video thực hành Goodly; chưa xác minh đủ giao dịch thật của doanh nghiệp. \href{run:../docs/01_data_understanding.md}{Ghi nhận nguồn/giả định}. Phân tích dùng \href{run:../data/processed/nile_sales_clean.csv}{CSV sạch đã duyệt}, từ 01/01 đến 31/07/2025 theo ngày bán.
+\item \textbf{Mức ghi nhận:} một dòng ghi sản phẩm, chưa khẳng định là đơn thật. Một mã nguồn có thể gắn nhiều khách; H1 là giả định thực hành đã chốt, chưa là nguyên nhân đã xác minh. Không tự sửa khách hay suy số đơn/khách mua lại.
+\item \textbf{Phép tính:} cộng Line\_Amount và Qty; tỷ lệ cờ bằng dòng cờ 1/dòng cờ 0–1; hiệu ngày bằng Delivery\_Date−Sales\_Date. Không tự trừ cờ khỏi giá trị, quy đổi tiền tệ hoặc tính lợi nhuận/doanh thu thuần. \href{run:../docs/04_measures.md}{Định nghĩa chỉ số}.
+\item \textbf{Bằng chứng:} số được đối chiếu lại CSV/bảng Phase4B; hai ảnh native đã kiểm ở 5B và hai hình giải thích từ số đối chiếu. \href{run:../docs/04b_findings.md}{Phân tích chi tiết}; \href{run:../pbi/NileSales.pbip}{mở Power BI}.
+\item \textbf{Giới hạn sản phẩm:} kiểm đầy đủ lọc/chuyển trang/đặt lại/hover của dashboard chưa nghiệm thu. \href{run:../docs/05b_dashboard_build.md}{Các giới hạn 5B}. Báo cáo không thay thế bước kiểm đó và không ghi nhận việc đề xuất đã được triển khai.
+\end{itemize}
+\end{document}

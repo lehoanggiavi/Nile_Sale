@@ -1,0 +1,92 @@
+/// Bang chua measures tieng Viet (Ban hang/Hoan tra/Giao hang/Dong gop/So thang). Cot khoi tao an, khong dung lam du lieu.
+table Measure
+	lineageTag: f86ce38a-db4a-4aa2-8633-5bad59796218
+
+	/// Dem dong theo context loc hien co. Khong co dong thi blank theo DAX.
+	measure 'Số dòng nguồn' = COUNTROWS ( FactSalesLine )
+		formatString: #,##0
+		displayFolder: Bán hàng
+		lineageTag: 548c9f11-bd97-43d4-b982-e75e28c3d324
+
+	/// Tong Qty theo context. So nguyen; don vi hang chua xac nhan.
+	measure 'Lượng bán nguồn' = SUM ( FactSalesLine[Qty] )
+		formatString: #,##0
+		displayFolder: Bán hàng
+		lineageTag: 4b5f5e18-1d5b-4999-8e34-4a106279d808
+
+	/// Tong Line_Amount theo context. So nguyen, khong ky hieu tien, khong goi doanh thu thuan.
+	measure 'Giá trị dòng nguồn' = SUM ( FactSalesLine[Line_Amount] )
+		formatString: #,##0
+		displayFolder: Bán hàng
+		lineageTag: 3550af15-12c8-4b7e-9f50-3cd698dabf55
+
+	/// Dem Order_ID khac nhau, BO BLANK (DISTINCTCOUNTNOBLANK). Nguon hien khong co blank (6.246 giu nguyen). Chi mo ta ma nguon; khong AOV.
+	measure 'Số mã nhóm nguồn' = DISTINCTCOUNTNOBLANK ( FactSalesLine[Order_ID] )
+		formatString: #,##0
+		displayFolder: Bán hàng
+		lineageTag: 33e241dc-662d-4352-8c44-d3d6f9c8aa73
+
+	/// Dong co Is_Returned 0 hoac 1, GIAO (KEEPFILTERS) voi loc hien co ke ca loc cung cot. Mau so ty le hoan muc dong.
+	measure 'Số dòng có cờ hợp lệ' = CALCULATE ( COUNTROWS ( FactSalesLine ), KEEPFILTERS ( FactSalesLine[Is_Returned] IN { 0, 1 } ) )
+		formatString: #,##0
+		displayFolder: Hoàn trả
+		lineageTag: 0fbb56ff-42b3-4245-9a48-28b45d46e5ab
+
+	/// Dong Is_Returned=1, giao voi loc hien co (KEEPFILTERS, khong ghi de chon co=0). Co mau hop le nhung khong co dong 1 thi 0; khong mau thi blank.
+	measure 'Số dòng có cờ hoàn' = VAR nHopLe = [Số dòng có cờ hợp lệ] VAR r = CALCULATE ( COUNTROWS ( FactSalesLine ), KEEPFILTERS ( FactSalesLine[Is_Returned] = 1 ) ) RETURN IF ( ISBLANK ( nHopLe ), BLANK (), IF ( ISBLANK ( r ), 0, r ) )
+		formatString: #,##0
+		displayFolder: Hoàn trả
+		lineageTag: 1b5aabd9-9f1f-4f24-aa1c-da8d9956fe80
+
+	/// Dong co 1 / dong co hop le (DIVIDE). Mau co dong nhung khong co 1 thi 0; khong mau thi blank. Khong phai ty le don/hang hoan.
+	measure 'Tỷ lệ dòng có cờ hoàn' = VAR n1 = [Số dòng có cờ hoàn] VAR nd = [Số dòng có cờ hợp lệ] RETURN IF ( ISBLANK ( nd ), BLANK (), DIVIDE ( n1, nd, 0 ) )
+		formatString: 0.00%
+		displayFolder: Hoàn trả
+		lineageTag: 1e066eb7-86f4-4fe4-844b-80742d719f14
+
+	/// Dem dong du 2 ngay hop le va giao>=ban TREN TAP DANG LOC (FILTER giu context, giao voi loc hien co). So mau cho trung vi, cung tap voi median.
+	measure 'Số dòng đủ ngày' = COUNTROWS ( FILTER ( FactSalesLine, NOT ISBLANK ( FactSalesLine[Sales_Date] ) && NOT ISBLANK ( FactSalesLine[Delivery_Date] ) && FactSalesLine[Delivery_Date] >= FactSalesLine[Sales_Date] ) )
+		formatString: #,##0
+		displayFolder: Giao hàng
+		lineageTag: be9625fa-3770-4f67-9844-8473d4c52f2f
+
+	/// MEDIANX hieu ngay Delivery-Sales tren dong du ngay (grain dong). Don vi ngay; khong thoi gian theo don/SLA. Khong mau thi blank.
+	measure 'Trung vị hiệu ngày nguồn' = VAR T = FILTER ( FactSalesLine, NOT ISBLANK ( FactSalesLine[Sales_Date] ) && NOT ISBLANK ( FactSalesLine[Delivery_Date] ) && FactSalesLine[Delivery_Date] >= FactSalesLine[Sales_Date] ) RETURN IF ( ISEMPTY ( T ), BLANK (), MEDIANX ( T, DATEDIFF ( FactSalesLine[Sales_Date], FactSalesLine[Delivery_Date], DAY ) ) )
+		formatString: #,##0.0
+		displayFolder: Giao hàng
+		lineageTag: 1251279b-169c-49bc-a180-0899bee2dcc2
+
+	/// Gia tri context / gia tri pham vi san pham dang chon (ALLSELECTED DimProduct: bo group hang, giu chon ngoai group + loc ngay/noi nhan). Dung cho truc Category/SKU tu DimProduct.
+	measure 'Tỷ trọng giá trị sản phẩm được chọn' = DIVIDE ( [Giá trị dòng nguồn], CALCULATE ( [Giá trị dòng nguồn], ALLSELECTED ( DimProduct ) ) )
+		formatString: 0.00%
+		displayFolder: Đóng góp
+		lineageTag: 2e9f9f43-e905-4a31-987b-024cc46a53a1
+
+	/// Tuong tu nhung mau so go group hang DimDestination, giu chon ngoai group + loc ngay/san pham. Dung cho truc To_Location/City_Tier tu DimDestination.
+	measure 'Tỷ trọng giá trị nơi nhận được chọn' = DIVIDE ( [Giá trị dòng nguồn], CALCULATE ( [Giá trị dòng nguồn], ALLSELECTED ( DimDestination ) ) )
+		formatString: 0.00%
+		displayFolder: Đóng góp
+		lineageTag: 5fbf10e8-db06-4209-b6a5-5c0a277c3095
+
+	/// Gia tri thang lich lien truoc, chi khi context chon DU SO NGAY cua 1 thang day du (dem ngay DimDate) co dong hien tai va ky truoc. Chon roi rac/thieu ngay/nhieu thang deu blank.
+	measure 'Giá trị nguồn tháng trước' = VAR dMin = MIN ( DimDate[Date] ) VAR dMax = MAX ( DimDate[Date] ) VAR nDays = DISTINCTCOUNT ( DimDate[Date] ) VAR fullMonth = NOT ISBLANK ( dMin ) && DAY ( dMin ) = 1 && EOMONTH ( dMin, 0 ) = dMax && nDays = DAY ( EOMONTH ( dMin, 0 ) ) VAR prev = CALCULATE ( [Giá trị dòng nguồn], REMOVEFILTERS ( DimDate ), DimDate[Date] >= EDATE ( dMin, -1 ), DimDate[Date] <= EOMONTH ( dMin, -1 ) ) RETURN IF ( NOT fullMonth || ISBLANK ( [Giá trị dòng nguồn] ) || ISBLANK ( prev ), BLANK (), prev )
+		formatString: #,##0
+		displayFolder: So tháng
+		lineageTag: c934217d-c46d-4182-9f44-754f0f138194
+
+	/// (Hien tai - thang truoc)/thang truoc (DIVIDE). Cung guard thang day du; mau so 0 thi blank. Khong YoY, khong cong/average ty le thang o tong.
+	measure 'Thay đổi giá trị nguồn so tháng trước (%)' = VAR cur = [Giá trị dòng nguồn] VAR prv = [Giá trị nguồn tháng trước] RETURN IF ( ISBLANK ( cur ) || ISBLANK ( prv ), BLANK (), DIVIDE ( cur - prv, prv ) )
+		formatString: 0.00%
+		displayFolder: So tháng
+		lineageTag: 23a24132-e8fa-4aab-8132-d08bc624261b
+
+	column Value
+		isHidden
+		lineageTag: d5609725-c2bb-4db5-b11b-e48ce12c89a3
+		isNameInferred
+		sourceColumn: [Value]
+
+	partition Measure = calculated
+		mode: import
+		source = { BLANK () }
+

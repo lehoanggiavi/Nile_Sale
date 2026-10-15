@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "NileSales"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "47d2ddd5-781b-434f-b129-ef7885c51444"
+  }
+}

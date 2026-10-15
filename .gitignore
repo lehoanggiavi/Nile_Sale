@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+~$*
+pbi/**/.pbi/
+.env
+.env.*
+!.env.example
+
+# Local coordination, receipts and backups
+/Log/
+/Plan/
+/AGENTS.md
+/CLAUDE.md
+# Third-party connection guide; not a project deliverable
+/How to Connect Claude with Power BI - PDF Guide.pdf
+# LaTeX and tool build output
+*.aux
+*.log
+*.out
+*.xdv
+*.synctex.gz
+# Keep only the accepted aggregate tables/figures in phase 4B
+/reports/phase4b/*
+!/reports/phase4b/*.csv
+!/reports/phase4b/*.png
+!/reports/phase4b/manifest.json

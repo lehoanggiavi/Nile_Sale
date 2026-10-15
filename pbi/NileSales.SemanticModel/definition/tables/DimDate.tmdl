@@ -1,0 +1,36 @@
+/// Lich lien tuc 2025-01-01..2025-12-31 (365 ngay), bao Sales_Date va Delivery_Date.
+table DimDate
+	lineageTag: ef34a019-7878-4567-925c-35dd1e690c9d
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isUnique
+		formatString: Long Date
+		lineageTag: 76667033-39ef-44dc-a406-43f4fa1a384e
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		lineageTag: 367b3742-9d15-4339-ad26-d5ffc2ae23a7
+		sourceColumn: Year
+
+	column MonthNumber
+		dataType: int64
+		lineageTag: 9fa50492-65c4-4dd6-a899-89a57307816a
+		sourceColumn: MonthNumber
+
+	column YearMonth
+		dataType: string
+		lineageTag: 53d040d6-22f5-4345-be62-42814bab418b
+		sourceColumn: YearMonth
+
+	partition DimDate = m
+		mode: import
+		source = let Start = #date(2025, 1, 1), Days = List.Dates(Start, 365, #duration(1, 0, 0, 0)), T = Table.FromList(Days, Splitter.SplitByNothing(), {"Date"}), Typed = Table.TransformColumnTypes(T, {{"Date", type date}}), AddY = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type), AddM = Table.AddColumn(AddY, "MonthNumber", each Date.Month([Date]), Int64.Type), AddYM = Table.AddColumn(AddM, "YearMonth", each Text.From([Year]) & "-" & Text.PadStart(Text.From([MonthNumber]), 2, "0"), type text) in AddYM
+
